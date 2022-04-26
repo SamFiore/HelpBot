@@ -14,4 +14,4 @@ def makesheet():
     #sheet["E3"] = plA
 
 makesheet()
-book.save("C:/Users/franc/Escritorio/BotDiscPython/DataBase/ExcelPrueba.xlsx")
+book.save() #-> Here you add file adress.
