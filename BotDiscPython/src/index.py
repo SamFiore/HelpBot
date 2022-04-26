@@ -29,12 +29,12 @@ intents = discord.Intents(members = True)
 client = discord.Client(intents = intents)
 
 
-bot = commands.Bot(command_prefix="q.", description="Bot de ayuda")
+bot = commands.Bot(command_prefix="q.", description="help bot")
 
 @bot.event
 async def on_ready():
-    print("Listo...")
-    await bot.change_presence(activity=discord.Streaming(name="SamFiore", url="http://twitch.tv/bartofiore1"))
+    print("Ready...")
+    await bot.change_presence(activity=discord.Streaming(name="twitch", url="twitchchannel")) #-> Here you add you twitch.
     
 @client.event
 async def on_member_join():
@@ -43,16 +43,19 @@ async def on_member_join():
     #welcome_channel = client.get_channel(929544918534324336)
     welcome_channel = guild.Guild.get_channel(929544918534324336)
     print (welcome_channel.id)
-    await welcome_channel.send(f"Bienvenido {member.mention} a {guild.name}, espero que disfrutes tu estancia aquí. :D")
+    await welcome_channel.send(f"Welcome {member.mention} to {guild.name}, i hope you like my discord server. Thx u for enjoy :D")
 
+#this command is used to calculate the ping, but below is a better one
 @bot.command()
 async def ping(ctx):
     await ctx.send("pong")
 
+#this command i use to test, just repite what you wrote.
 @bot.command()
 async def test(ctx, arg):
     await ctx.send(arg)
 
+ #Search in youtube
 @bot.command()
 async def youtube(ctx, *, search):
     query_string = parse.urlencode({"search_query": search})
@@ -61,40 +64,23 @@ async def youtube(ctx, *, search):
     print(search_results)
     await ctx.send("https://www.youtube.com/watch?v=" + search_results[0])
 
+# here be the server info    
 @bot.command()
 async def info(ctx):
-    embed = discord.Embed(title=f"{ctx.guild.name}", description="Hola", timestamp=datetime.datetime.utcnow(), color=discord.Color.dark_red())
-    embed.add_field(name="El server fue creado en", value=f"{ctx.guild.created_at}")
-    embed.add_field(name="El dueño es", value=f"{ctx.guild.owner}")
-    embed.add_field(name="Hay un total de", value=f"{ctx.guild.member_count}")
-    embed.add_field(name="La región es", value=f"{ctx.guild.region}")
-    embed.add_field(name="La ID del server es", value=f"{ctx.guild.id}")
+    embed = discord.Embed(title=f"{ctx.guild.name}", description="Hello", timestamp=datetime.datetime.utcnow(), color=discord.Color.dark_red())
+    embed.add_field(name="The server was created in", value=f"{ctx.guild.created_at}")
+    embed.add_field(name="There a total of", value=f"{ctx.guild.owner}", "members")
+    embed.add_field(name="", value=f"{ctx.guild.member_count}")
+    embed.add_field(name="The region is", value=f"{ctx.guild.region}")
+    embed.add_field(name="The ID server is", value=f"{ctx.guild.id}")
     embed.set_thumbnail(url="http://www.malagana.net/wp-content/uploads/2015/03/internet-explorer-windows-10.png")
     await ctx.send(embed=embed)
 
-
+#Here is the important of bot, this is a dictionary to help students find word and their definition. It is en development
 @bot.command()
-async def febrero(ctx):
-    embed = discord.Embed(title="Nota de amor...")
-    embed.add_field(name="14 de febrero. Recuerdo en mi alma que siempre fue un día que estuve solo, pero ahora tengo a la llama que prender mi amor.", value="-------")
-    embed.add_field(name="Sabes, eres como la luna, pero en el sentido de que me iluminas por las noches más oscuras.", value="---------")
-    embed.add_field(name="Eres la persona que aprecio como una obra de arte, no paro de contemplarte.", value="----------")
-    embed.add_field(name="Los recuerdos y los momentos, son mi tesoro, pero sobre todo vos sos mi oro.",value="-----------")
-    embed.add_field(name="Eres mi día favorito de la semana, o sea, eres el día que siempre espero con ansías.",value="------------")
-    embed.add_field(name="La mecanica que me arregla cada día y pone en marcha el motor de mi corazón.", value="-------------")
-    embed.set_image(url="https://i.ibb.co/YX5HrCY/Collage-Mamor.jpg")
-    embed.add_field(name="""
-    ♥♥♥♥♥♥♥
-    https://youtu.be/vZqzy9JSB4E
-    ♥♥♥♥♥♥♥
-
-    """, value="<3")
-    await ctx.send(embed=embed)
-
-@bot.command()
-async def definicion(ctx, *, palabra):
+async def definicion(ctx, *, word):
 #Palabras y definición
-    palabra = palabra.lower()
+    word = word.lower()
     about = "'Acerca de...', refiere a hablar sobre algo o alguien."
     I = "'Yo', habla de ti mismo."
     yes = "'Sí', aceptación o confirmación de algo."
@@ -110,17 +96,17 @@ async def definicion(ctx, *, palabra):
     elif palabra == "yes":
         await ctx.send(yes)
 
-    elif palabra == "arigato gozaimasu" or palabra == "ありがとうございます" :
+    elif palabra == "arigato gozaimasu" or word == "ありがとうございます" :
         await ctx.send(arigato_gozaimasu)
 
     else :
-        await ctx.send("La palabra es incorrecta o no existe")
+        await ctx.send("The word is incorrect")
 
 @bot.command()
 async def replace(ctx):
-    mensaje_remplazado = await ctx.send("Remplazando este mensaje...")
+    mensaje_remplazado = await ctx.send("Replacing...")
     time.sleep(2)
-    await mensaje_remplazado.edit(content="El mensaje ha sido remplazado.")
+    await mensaje_remplazado.edit(content="this manssage was replace.")
 
 @bot.command()
 async def pingms(ctx):
