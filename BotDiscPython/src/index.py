@@ -133,7 +133,7 @@ async def pingms(ctx):
 
 @bot.command()
 async def repite(ctx, *, palabras):
-    await ctx.send(palabras)
+    await ctx.send(words)
 
 
 @bot.command()
@@ -141,13 +141,13 @@ async def excel(ctx, msg):
     
     msgE = msg
 
-    def palabras1(msg3): 
-        print (msg3 ,"enviado")
+    def words1(msg3): 
+        print (msg3 ,"sended")
 
-    pl1 = palabras1(msgE)
+    pl1 = words1(msgE)
 
     #excelprueba.makesheet
-    await ctx.send("Listo")
+    await ctx.send("Ready")
 
 
 
