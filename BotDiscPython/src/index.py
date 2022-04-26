@@ -50,7 +50,7 @@ async def on_member_join():
 async def ping(ctx):
     await ctx.send("pong")
 
-#this command i use to test, just repite what you wrote.
+#this command i use to test, just repite words.
 @bot.command()
 async def test(ctx, arg):
     await ctx.send(arg)
@@ -87,27 +87,29 @@ async def definicion(ctx, *, word):
     arigato_gozaimasu = "'Muchas gracias', forma cortez de agradecer."
 
 
-    if palabra == "about":
+    if word == "about":
         await ctx.send(about)
 
-    elif palabra == "i":
+    elif word == "i":
         await ctx.send(I)
 
-    elif palabra == "yes":
+    elif word == "yes":
         await ctx.send(yes)
 
-    elif palabra == "arigato gozaimasu" or word == "ありがとうございます" :
+    elif word == "arigato gozaimasu" or word == "ありがとうございます" :
         await ctx.send(arigato_gozaimasu)
 
     else :
         await ctx.send("The word is incorrect")
 
+ #Replace messages 
 @bot.command()
 async def replace(ctx):
-    mensaje_remplazado = await ctx.send("Replacing...")
+    message_replace = await ctx.send("Replacing...")
     time.sleep(2)
-    await mensaje_remplazado.edit(content="this manssage was replace.")
+    await message_replace.edit(content="this messages was replace.")
 
+# This command use to show the ping in ms
 @bot.command()
 async def pingms(ctx):
     before = time.monotonic()
@@ -117,11 +119,12 @@ async def pingms(ctx):
     pingB = (str(pingA).split("."))[0]
     await response.edit(content=pong +" (" + pingB + "ms)")
 
+#Repeat what you wrote, this repeat sentences
 @bot.command()
 async def repite(ctx, *, words):
     await ctx.send(words)
 
-
+#This command does not work, i working in it
 @bot.command()
 async def excel(ctx, msg):
     
