@@ -132,7 +132,7 @@ async def pingms(ctx):
     await response.edit(content=pong +" (" + pingB + "ms)")
 
 @bot.command()
-async def repite(ctx, *, palabras):
+async def repite(ctx, *, words):
     await ctx.send(words)
 
 
