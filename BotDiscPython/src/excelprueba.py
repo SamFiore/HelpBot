@@ -9,8 +9,8 @@ sheet = book.active
 #plA = pl1.mensaje3
 
 def makesheet():
-    sheet["B1"] = "Hola mundo"
-    sheet["A2"] = "Pato"
+    sheet["B1"] = "Hello world"
+    sheet["A2"] = "Cuak"
     #sheet["E3"] = plA
 
 makesheet()
